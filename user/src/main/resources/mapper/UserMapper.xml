@@ -31,4 +31,10 @@
             </trim>
             where user_id = #{userId}
     </update>
+    <select id="selectByUserId" resultType="com.pomegranate.user.entity.User" resultMap="UserMap">
+        select * from user where user_id = #{userId}
+    </select>
+    <select id="selectByEmail" resultType="com.pomegranate.user.entity.User" resultMap="UserMap">
+        select * from user where email = #{email}
+    </select>
 </mapper>

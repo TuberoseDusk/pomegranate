@@ -1,6 +1,7 @@
 package com.pomegranate.user.controller;
 
 import com.pomegranate.common.response.Response;
+import com.pomegranate.user.request.UserLoginReq;
 import com.pomegranate.user.request.UserRegisterReq;
 import com.pomegranate.user.service.UserService;
 import jakarta.annotation.Resource;
@@ -19,6 +20,12 @@ public class WelcomeController {
     @PostMapping("/register")
     public Response<Void> register(@Valid @RequestBody UserRegisterReq userRegisterReq) {
         userService.save(userRegisterReq);
+        return Response.success();
+    }
+
+    @PostMapping("/login")
+    public Response<Void> login(@Valid @RequestBody UserLoginReq userLoginReq) {
+        userService.login(userLoginReq);
         return Response.success();
     }
 }
