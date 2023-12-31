@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum ResponseEnum {
 
     SUCCESS(0, "成功"),
+    REQUEST_PARAM_ERROR(1, "输入参数错误"),
     UNKNOWN_ERROR(-1, "未知错误"),
 
     USER_NOT_EXIST(1001, "用户不存在"),

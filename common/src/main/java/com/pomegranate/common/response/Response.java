@@ -25,6 +25,12 @@ public class Response<T> {
         this.data = data;
     }
 
+    private Response(ResponseEnum responseEnum, T data) {
+        code = responseEnum.getCode();
+        msg = responseEnum.getMsg();
+        this.data = data;
+    }
+
     public static Response<Void> success() {
         return new Response<>();
     }
@@ -39,5 +45,9 @@ public class Response<T> {
 
     public static Response<Void> error(ResponseEnum responseEnum) {
         return new Response<>(responseEnum);
+    }
+
+    public static <T> Response<T> error(ResponseEnum responseEnum, T data) {
+        return new Response<>(responseEnum, data);
     }
 }

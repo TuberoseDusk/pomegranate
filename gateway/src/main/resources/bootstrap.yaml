@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: 192.168.1.106:8848
+      discovery:
+        namespace: pomegranate
+        username: nacos
+        password: nacos
+        group: DEFAULT_GROUP
+  application:
+    name: gateway

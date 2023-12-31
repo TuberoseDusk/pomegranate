@@ -32,10 +32,12 @@ public class JWT {
 
     public static Long decode(String token) {
         if (token == null || token.trim().isEmpty()) {
+            log.info("jwt token is null");
             return null;
         }
-        cn.hutool.jwt.JWT jwt = JWTUtil.parseToken(token).setKey(key.getBytes());
+        cn.hutool.jwt.JWT jwt = JWTUtil.parseToken(token.trim()).setKey(key.getBytes());
         JSONObject payloads = jwt.getPayloads();
+        log.info("用户ID: {}", payloads.get("userId").toString());
         return ((NumberWithFormat)payloads.get("userId")).longValue();
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
-@ComponentScan("com.pomegranate")
+@ComponentScan({"com.pomegranate.common", "com.pomegranate.user"})
 @Slf4j
 public class UserApplication {
 

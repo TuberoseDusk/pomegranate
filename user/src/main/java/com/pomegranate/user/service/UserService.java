@@ -13,11 +13,13 @@ import com.pomegranate.user.request.UserRegisterReq;
 import com.pomegranate.user.response.UserCardRes;
 import com.pomegranate.user.response.UserLoginRes;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 @Service
+@Slf4j
 public class UserService {
     @Resource
     private UserMapper userMapper;
@@ -38,6 +40,8 @@ public class UserService {
         user.setName("YOU-KNOW-WHO");
         user.setPassword(DigestUtils.md5DigestAsHex(userRegisterReq.getPassword().getBytes()));
         user.setGender(GenderEnum.UNKNOWN.getCode());
+        userMapper.insert(user);
+        log.info("用户注册: {}", user.getUserId());
     }
 
     /**
@@ -54,6 +58,7 @@ public class UserService {
         }
 
         String token = JWT.encode(user.getUserId());
+        log.info("用户登录： {}", user.getUserId());
         return new UserLoginRes(user.getUserId(), token);
     }
 
@@ -69,6 +74,7 @@ public class UserService {
 
         UserCardRes userCardRes = new UserCardRes();
         BeanUtils.copyProperties(user, userCardRes);
+        log.info("查询用户信息： {}", user.getUserId());
         return userCardRes;
     }
 }
