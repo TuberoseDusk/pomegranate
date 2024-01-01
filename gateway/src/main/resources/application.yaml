@@ -8,3 +8,7 @@ spring:
           uri: lb://user
           predicates:
             - Path=/user/**
+        - id: diary
+          uri: lb://diary
+          predicates:
+            - Path=/diary/**
